@@ -70,3 +70,14 @@ def deleteNote(request, pk):
     note = models.Note.objects.get(id=pk)
     note.delete()
     return Response('Note deleted successfully!')
+
+
+@api_view(['POST'])
+def newNote(request):
+    data = request.data
+    newNote = models.Note.objects.create(
+        note_body=data['note_body']
+    )
+    serializer = NotesSerializer(newNote, many=False)
+
+    return Response(serializer.data)

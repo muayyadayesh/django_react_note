@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ListItem from "../components/ListItem";
+import { ReactComponent as AddButton } from "../assets/plus.svg";
+import { Link } from "react-router-dom";
 
 const ListPage = () => {
   const [data, setData] = useState([{}]);
@@ -23,6 +25,10 @@ const ListPage = () => {
           ? ""
           : data.map((note, index) => <ListItem key={index} note={note} />)}
       </div>
+
+      <Link to="/note/new">
+        <AddButton className="floating-button" />
+      </Link>
     </div>
   );
 };
